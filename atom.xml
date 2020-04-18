@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://muyistudy.github.io</id>
+    <title>Muyi</title>
+    <updated>2020-04-18T11:02:29.414Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://muyistudy.github.io"/>
+    <link rel="self" href="https://muyistudy.github.io/atom.xml"/>
+    <subtitle>木易的博客</subtitle>
+    <logo>https://muyistudy.github.io/images/avatar.png</logo>
+    <icon>https://muyistudy.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, Muyi</rights>
+    <entry>
+        <title type="html"><![CDATA[JavaScript转义符]]></title>
+        <id>https://muyistudy.github.io/post/javascript-zhuan-yi-fu/</id>
+        <link href="https://muyistudy.github.io/post/javascript-zhuan-yi-fu/">
+        </link>
+        <updated>2020-04-10T10:34:14.000Z</updated>
+        <content type="html"><![CDATA[<p>转义序列	字符<br>
+\b	退格<br>
+\f	走纸换页<br>
+\n	换行<br>
+\r	回车<br>
+\t	横向跳格 (Ctrl-I)<br>
+'	单引号<br>
+&quot;	双引号<br>
+\	反斜杠</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[HTML特殊字符]]></title>
+        <id>https://muyistudy.github.io/post/te-shu-zi-fu/</id>
+        <link href="https://muyistudy.github.io/post/te-shu-zi-fu/">
+        </link>
+        <updated>2020-04-05T11:14:53.000Z</updated>
+        <content type="html"><![CDATA[<p>空格 &amp;nbsp<br>
+小于号 &amp;lt<br>
+大于号 &amp;gt<br>
+更多参考https://www.runoob.com/html/html-entities.html</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[H5新增的标签]]></title>
+        <id>https://muyistudy.github.io/post/h5-xin-zeng-de-biao-qian/</id>
+        <link href="https://muyistudy.github.io/post/h5-xin-zeng-de-biao-qian/">
+        </link>
+        <updated>2020-04-05T05:25:16.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="h5新增的语义化标签">H5新增的语义化标签</h1>
+<ul>
+<li><code>&lt;header&gt;</code>:头部标签</li>
+<li><code>&lt;nav&gt;</code>:导航标签</li>
+<li><code>&lt;article&gt;</code>:内容标签</li>
+<li><code>&lt;section&gt;</code>:定义文档某个区域</li>
+<li><code>&lt;aside&gt;</code>:侧边栏标签</li>
+<li><code>&lt;footer&gt;</code>:尾部标签</li>
+</ul>
+<p>这种语义化标准主要是针对搜索引擎的<br>
+这些新标签可以使用多次<br>
+在ie9中，需要把这些元素转换为块级元素、<br>
+移动端更喜欢使用这些标签</p>
+<h1 id="h5新增的多媒体标签">H5新增的多媒体标签</h1>
+<p>视频<code>&lt;video&gt;：&lt;video src=&quot;文件地址&quot; controls=&quot;controls&quot;&gt;&lt;/video&gt;</code></p>
+<pre><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;
+  &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+ 您的浏览器不支持Video标签。
+&lt;/video&gt;
+</code></pre>
+<p>属性autoplay</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>视频就绪自动播放（谷歌浏览器需要添加muted来解决自动播放问题）</td>
+</tr>
+</tbody>
+</table>
+<p>音频<code>&lt;audio&gt;</code><br>
+表单<code>&lt;input&gt;</code> search tel number<br>
+表单属性：required placeholder autofocus autocomplete multiple</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[绝对定位的盒子居中]]></title>
+        <id>https://muyistudy.github.io/post/jue-dui-ding-wei-ju-zhong/</id>
+        <link href="https://muyistudy.github.io/post/jue-dui-ding-wei-ju-zhong/">
+        </link>
+        <updated>2020-03-17T09:10:09.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li><code>left: 50%;</code>：让<strong>盒子的左侧</strong>移动到<strong>父级元素的水平中心位置</strong>；</li>
+<li><code>margin-left: -100px;</code>：让盒子<strong>向左</strong>移动<strong>自身宽度的一半</strong>。</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[清除浮动]]></title>
+        <id>https://muyistudy.github.io/post/fu-dong/</id>
+        <link href="https://muyistudy.github.io/post/fu-dong/">
+        </link>
+        <updated>2020-03-17T08:12:07.000Z</updated>
+        <content type="html"><![CDATA[<p>浮动布局注意点<br>
+1.浮动和标准流的父盒子进行搭配<br>
+先用标准流的父盒子排列上下位置，之后内部子元素采取浮动排列左右位置<br>
+2.一个元素浮动了，理论上其余的兄弟元素也要浮动<br>
+一个盒子里面有多个盒子，如果一个盒子浮动了，那么其他兄弟也应该浮动，以防止引起问题。<br>
+浮动的盒子只会影响浮动盒子后面的标准流，不会影响前面的标准流</p>
+<p>所有的父盒子都必须有高吗？<br>
+理想的状态是，让子盒子撑开父亲，有多少盒子，父盒子就有多高</p>
+<p>为什么要清除浮动？<br>
+父盒子很多情况下，不方便给高度，但是子盒子浮动又不占有位置，最后父级盒子高度为0时，就会影响下面的标准流盒子</p>
+<p>清除浮动的本质</p>
+<ul>
+<li>清除浮动元素造成的影响（父级元素因为子级浮动引起内部高度为0 的问题）</li>
+<li>如果父盒子有高度则不需要清除浮动</li>
+<li>清除浮动之后，父级盒子会根据浮动的子盒自动检测高度。父级有了高度，就不会影响下面的标准流了。</li>
+</ul>
+<pre><code>选择器{clear:属性值;}   clear 清除  
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left</td>
+<td>不允许左侧有浮动元素（清除左侧浮动的影响）</td>
+</tr>
+<tr>
+<td>right</td>
+<td>不允许右侧有浮动元素（清除右侧浮动的影响）</td>
+</tr>
+<tr>
+<td>both</td>
+<td>同时清除左右两侧浮动的影响</td>
+</tr>
+</tbody>
+</table>
+<p>但是我们实际工作中， 几乎只用 clear: both;<br>
+选择器{clear:属性值;}   clear 清除</p>
+<h4 id="1额外标签法隔墙法">1).额外标签法(隔墙法)</h4>
+<pre><code class="language-html">是W3C推荐的做法是通过在浮动元素末尾添加一个空的标签例如 &lt;div style=”clear:both”&gt;&lt;/div&gt;，或则其他标签br等亦可。
+</code></pre>
+<ul>
+<li>优点： 通俗易懂，书写方便</li>
+<li>缺点： 添加许多无意义的标签，结构化较差，空标签必须是块级元素</li>
+</ul>
+<h4 id="2父级添加overflow属性方法">2).父级添加overflow属性方法</h4>
+<pre><code class="language-css">可以给父级添加： overflow为 hidden| auto| scroll  都可以实现。
+</code></pre>
+<ul>
+<li>优点：  代码简洁</li>
+<li>缺点：  内容增多时候容易造成不会自动换行导致内容被隐藏掉，无法显示需要溢出的元素。</li>
+</ul>
+<h4 id="3使用after伪元素清除浮动">3).使用after伪元素清除浮动</h4>
+<p><strong>:after 方式为空元素额外标签法的升级版，好处是不用单独加标签了</strong></p>
+<p>使用方法：</p>
+<pre><code class="language-css"> .clearfix:after {  content: &quot;&quot;; display: block; height: 0; clear: both; visibility: hidden;  }   
+
+ .clearfix {*zoom: 1;}   /* IE6、7 专有 */
+</code></pre>
+<ul>
+<li>优点： 符合闭合浮动思想  结构语义化正确</li>
+<li>缺点： 由于IE6-7不支持:after，使用 zoom:1触发 hasLayout。</li>
+<li>代表网站： 百度、淘宝网、网易等</li>
+</ul>
+<h4 id="4使用双伪元素清除浮动">4).使用双伪元素清除浮动</h4>
+<p>使用方法：</p>
+<pre><code class="language-css">.clearfix:before,.clearfix:after { 
+  content:&quot;&quot;;
+  display:table; 
+}
+.clearfix:after {
+ clear:both;
+}
+.clearfix {
+  *zoom:1;
+}
+</code></pre>
+<ul>
+<li>优点：  代码更简洁</li>
+<li>缺点：  由于IE6-7不支持:after，使用 zoom:1触发 hasLayout。</li>
+<li>代表网站： 小米、腾讯等</li>
+</ul>
+<h3 id="24-清除浮动总结">2.4 清除浮动总结</h3>
+<ol>
+<li>父级没高度</li>
+<li>子盒子浮动了</li>
+<li>影响下面布局了，我们就应该清除浮动了。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>清除浮动的方式</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>额外标签法（隔墙法）</td>
+<td style="text-align:left">通俗易懂，书写方便</td>
+<td style="text-align:left">添加许多无意义的标签，结构化较差。</td>
+</tr>
+<tr>
+<td>父级overflow:hidden;</td>
+<td style="text-align:left">书写简单</td>
+<td style="text-align:left">溢出隐藏</td>
+</tr>
+<tr>
+<td>父级after伪元素</td>
+<td style="text-align:left">结构语义化正确</td>
+<td style="text-align:left">由于IE6-7不支持:after，兼容性问题</td>
+</tr>
+<tr>
+<td>父级双伪元素</td>
+<td style="text-align:left">结构语义化正确</td>
+<td style="text-align:left">由于IE6-7不支持:after，兼容性问题</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[继承性]]></title>
+        <id>https://muyistudy.github.io/post/ji-cheng-xing/</id>
+        <link href="https://muyistudy.github.io/post/ji-cheng-xing/">
+        </link>
+        <updated>2020-03-17T06:00:04.000Z</updated>
+        <content type="html"><![CDATA[<p>CSS中的继承：子标签会继承父标签的某些样式，如文本颜色和字号。</p>
+<ul>
+<li>恰当的使用可以简化代码，降低css样式的复杂性</li>
+<li>子元素可以继承父元素的样式（text-,font-,line-这些开头的可以继承，以及color属性）</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Snipaste一款强大的截图软件]]></title>
+        <id>https://muyistudy.github.io/post/snipaste-yi-kuan-qiang-da-de-jie-tu-ruan-jian/</id>
+        <link href="https://muyistudy.github.io/post/snipaste-yi-kuan-qiang-da-de-jie-tu-ruan-jian/">
+        </link>
+        <updated>2020-03-15T16:24:32.000Z</updated>
+        <content type="html"><![CDATA[<p>很强大</p>
+]]></content>
+    </entry>
+</feed>

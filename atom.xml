@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://muyistudy.github.io</id>
     <title>Muyi</title>
-    <updated>2020-04-18T11:02:29.414Z</updated>
+    <updated>2020-04-21T10:15:57.051Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://muyistudy.github.io"/>
     <link rel="self" href="https://muyistudy.github.io/atom.xml"/>
@@ -11,20 +11,114 @@
     <icon>https://muyistudy.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Muyi</rights>
     <entry>
+        <title type="html"><![CDATA[清除浮动]]></title>
+        <id>https://muyistudy.github.io/post/qing-chu-fu-dong/</id>
+        <link href="https://muyistudy.github.io/post/qing-chu-fu-dong/">
+        </link>
+        <updated>2020-04-19T05:07:00.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="1额外标签法隔墙法">1).额外标签法(隔墙法)</h4>
+<pre><code class="language-html">是W3C推荐的做法是通过在浮动元素末尾添加一个空的标签例如 &lt;div style=”clear:both”&gt;&lt;/div&gt;，或则其他标签br等亦可。
+</code></pre>
+<ul>
+<li>优点： 通俗易懂，书写方便</li>
+<li>缺点： 添加许多无意义的标签，结构化较差。</li>
+</ul>
+<h4 id="2父级添加overflow属性方法">2).父级添加overflow属性方法</h4>
+<pre><code class="language-css">可以给父级添加： overflow为 hidden| auto| scroll  都可以实现。
+</code></pre>
+<p>优点：  代码简洁</p>
+<p>缺点：  内容增多时候容易造成不会自动换行导致内容被隐藏掉，无法显示需要溢出的元素。</p>
+<h4 id="3使用after伪元素清除浮动">3).使用after伪元素清除浮动</h4>
+<p><strong>:after 方式为空元素额外标签法的升级版，好处是不用单独加标签了</strong></p>
+<p>使用方法：</p>
+<pre><code class="language-css"> .clearfix:after {  content: &quot;&quot;; display: block; height: 0; clear: both; visibility: hidden;  }   
+
+ .clearfix {*zoom: 1;}   /* IE6、7 专有 */
+</code></pre>
+<ul>
+<li>优点： 符合闭合浮动思想  结构语义化正确</li>
+<li>缺点： 由于IE6-7不支持:after，使用 zoom:1触发 hasLayout。</li>
+<li>代表网站： 百度、淘宝网、网易等</li>
+</ul>
+<img src="D:/web案例/基础小案例/02-CSS资料/CSS-Day04/笔记/media/163.png"/>
+<h4 id="4使用双伪元素清除浮动">4).使用双伪元素清除浮动</h4>
+<p>使用方法：</p>
+<pre><code class="language-css">.clearfix:before,.clearfix:after { 
+  content:&quot;&quot;;
+  display:table; 
+}
+.clearfix:after {
+ clear:both;
+}
+.clearfix {
+  *zoom:1;
+}
+</code></pre>
+<ul>
+<li>
+<p>优点：  代码更简洁</p>
+</li>
+<li>
+<p>缺点：  由于IE6-7不支持:after，使用 zoom:1触发 hasLayout。</p>
+</li>
+<li>
+<p>代表网站： 小米、腾讯等</p>
+</li>
+</ul>
+<h3 id="24-清除浮动总结">2.4 清除浮动总结</h3>
+<p><strong>pink老师告诉你我们以后什么时候用清除浮动呢？</strong></p>
+<ol>
+<li>父级没高度</li>
+<li>子盒子浮动了</li>
+<li>影响下面布局了，我们就应该清除浮动了。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>清除浮动的方式</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>额外标签法（隔墙法）</td>
+<td style="text-align:left">通俗易懂，书写方便</td>
+<td style="text-align:left">添加许多无意义的标签，结构化较差。</td>
+</tr>
+<tr>
+<td>父级overflow:hidden;</td>
+<td style="text-align:left">书写简单</td>
+<td style="text-align:left">溢出隐藏</td>
+</tr>
+<tr>
+<td>父级after伪元素</td>
+<td style="text-align:left">结构语义化正确</td>
+<td style="text-align:left">由于IE6-7不支持:after，兼容性问题</td>
+</tr>
+<tr>
+<td>父级双伪元素</td>
+<td style="text-align:left">结构语义化正确</td>
+<td style="text-align:left">由于IE6-7不支持:after，兼容性问题</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[JavaScript转义符]]></title>
         <id>https://muyistudy.github.io/post/javascript-zhuan-yi-fu/</id>
         <link href="https://muyistudy.github.io/post/javascript-zhuan-yi-fu/">
         </link>
         <updated>2020-04-10T10:34:14.000Z</updated>
-        <content type="html"><![CDATA[<p>转义序列	字符<br>
-\b	退格<br>
-\f	走纸换页<br>
-\n	换行<br>
-\r	回车<br>
-\t	横向跳格 (Ctrl-I)<br>
-'	单引号<br>
+        <content type="html"><![CDATA[<p>'	单引号<br>
 &quot;	双引号<br>
-\	反斜杠</p>
+\	反斜杠<br>
+\n	换行符<br>
+\r	回车符<br>
+\t	制表符 横向跳格 (Ctrl-I)<br>
+\b	退格<br>
+\f	换页符</p>
 ]]></content>
     </entry>
     <entry>

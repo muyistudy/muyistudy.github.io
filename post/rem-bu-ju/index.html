@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="木易的博客">
 <meta name="theme-color" content="#000">
-<title>JavaScript转义符 | Muyi</title>
+<title>rem布局 | Muyi</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1591400464018">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,7 +25,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="JavaScript转义符" />
+    <meta name="description" content="rem布局" />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -146,7 +146,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://muyistudy.github.io/images/avatar.png"/>
@@ -184,6 +185,195 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#rem%E5%9F%BA%E7%A1%80">rem基础</a>
+<ul>
+<li><a href="#rem%E5%8D%95%E4%BD%8D">rem单位</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2">媒体查询</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2">什么是媒体查询</a></li>
+<li><a href="#%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E6%B3%95%E8%A7%84%E8%8C%83">媒体查询语法规范</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -271,8 +461,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://muyistudy.github.io/post/javascript-zhuan-yi-fu/">
-      JavaScript转义符
+    <a class="post-title-link" href="https://muyistudy.github.io/post/rem-bu-ju/">
+      rem布局
     </a>
   </h1>
   <div class="post-meta">
@@ -280,31 +470,126 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-04-10</span>
+      <span>2020-04-22</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>35<span class="pc-show">字数</span></span>
+      <span>656<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>'	单引号<br>
-&quot;	双引号<br>
-\	反斜杠<br>
-\n	换行符<br>
-\r	回车符<br>
-\t	制表符 横向跳格 (Ctrl-I)<br>
-\b	退格<br>
-\f	换页符</p>
+                <h3 id="rem基础">rem基础</h3>
+<h4 id="rem单位">rem单位</h4>
+<p>rem (root em)是一个相对单位，类似于em，em是父元素字体大小。</p>
+<p>不同的是rem的基准是相对于html元素的字体大小。</p>
+<p>比如，根元素（html）设置font-size=12px; 非根元素设置width:2rem; 则换成px表示就是24px。</p>
+<pre><code>/* 根html 为 12px */
+html {
+   font-size: 12px;
+}
+/* 此时 div 的字体大小就是 24px */       
+div {
+    font-size: 2rem;
+}
+</code></pre>
+<p>rem的优势：父元素文字大小可能不一致， 但是整个页面只有一个html，可以很好来控制整个页面的元素大小。</p>
+<h3 id="媒体查询">媒体查询</h3>
+<h4 id="什么是媒体查询">什么是媒体查询</h4>
+<p>媒体查询（Media Query）是CSS3新语法。</p>
+<ul>
+<li>使用 @media查询，可以针对不同的媒体类型定义不同的样式</li>
+<li>@media 可以针对不同的屏幕尺寸设置不同的样式</li>
+<li>当你重置浏览器大小的过程中，页面也会根据浏览器的宽度和高度重新渲染页面</li>
+<li>目前针对很多苹果手机、Android手机，平板等设备都用得到多媒体查询</li>
+</ul>
+<h4 id="媒体查询语法规范">媒体查询语法规范</h4>
+<ul>
+<li>用 @media开头 注意@符号</li>
+<li>mediatype  媒体类型</li>
+<li>关键字 and  not  only</li>
+<li>media feature 媒体特性必须有小括号包含</li>
+</ul>
+<pre><code>@media mediatype and|not|only (media feature) {
+    CSS-Code;
+}
+</code></pre>
+<ol>
+<li>mediatype 查询类型</li>
+</ol>
+<p>​       将不同的终端设备划分成不同的类型，称为媒体类型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">all</td>
+<td>用于所有设备</td>
+</tr>
+<tr>
+<td style="text-align:left">print</td>
+<td>用于打印机和打印预览</td>
+</tr>
+<tr>
+<td style="text-align:left">scree</td>
+<td>用于电脑屏幕，平板电脑，智能手机等</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>关键字</li>
+</ol>
+<p>​       关键字将媒体类型或多个媒体特性连接到一起做为媒体查询的条件。</p>
+<ul>
+<li>and：可以将多个媒体特性连接到一起，相当于“且”的意思。</li>
+<li>not：排除某个媒体类型，相当于“非”的意思，可以省略。</li>
+<li>only：指定某个特定的媒体类型，可以省略。</li>
+</ul>
+<ol start="3">
+<li>
+<p>媒体特性</p>
+<p>每种媒体类型都具体各自不同的特性，根据不同媒体类型的媒体特性设置不同的展示风格。我们暂且了解三个。</p>
+<p>注意他们要加小括号包含</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>定义输出设备页面中可见区域的宽度</td>
+</tr>
+<tr>
+<td>min-width</td>
+<td>定义输出设备页面中最小可见区域宽度</td>
+</tr>
+<tr>
+<td>max-width</td>
+<td>定义输出设备页面中最大可见区域宽度</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>媒体查询书写规则</p>
+<p>注意： 为了防止混乱，媒体查询我们要按照从小到大或者从大到小的顺序来写,但是我们最喜欢的还是从小到大来写，这样代码更简洁</p>
+</li>
+</ol>
 
               </div>
               <div class="post-footer">
@@ -315,7 +600,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://muyistudy.github.io/post/javascript-zhuan-yi-fu/" title="JavaScript转义符">JavaScript转义符</a>
+      <a href="https://muyistudy.github.io/post/rem-bu-ju/" title="rem布局">rem布局</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -328,15 +613,11 @@
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="清除浮动" href="https://muyistudy.github.io/post/qing-chu-fu-dong/">清除浮动</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="清除浮动" href="https://muyistudy.github.io/post/qing-chu-fu-dong/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="HTML特殊字符" href="https://muyistudy.github.io/post/te-shu-zi-fu/">HTML特殊字符</a>
-        <a class="nav-mobile-next" title="HTML特殊字符" href="https://muyistudy.github.io/post/te-shu-zi-fu/">下一篇</a>
+        <a class="nav-pc-next" title="清除浮动" href="https://muyistudy.github.io/post/qing-chu-fu-dong/">清除浮动</a>
+        <a class="nav-mobile-next" title="清除浮动" href="https://muyistudy.github.io/post/qing-chu-fu-dong/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
